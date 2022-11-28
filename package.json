@@ -1,0 +1,25 @@
+
+
+{
+    "sideEffects": false,
+    "name": "skelly-ui",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/adria-mobil/skelly-ui.git"
+    },
+    "keywords": [],
+    "author": "",
+    "private": true,
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/adria-mobil/skelly-ui/issues"
+    },
+    "homepage": "https://github.com/adria-mobil/skelly-ui#readme",
+    "dependencies": {
+        "nanoid": "^4.0.0",
+        "vue": "^3.2.45"
+    }
+}
