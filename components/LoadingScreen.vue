@@ -20,9 +20,11 @@ defineProps({
         <div
             v-show="modelValue"
             v-bind="$attrs"
-            class="w-full h-screen fixed inset-0 flex items-center justify-center bg-base-100 bg-opacity-70 z-20 text-primary"
+            class="w-full h-screen fixed inset-0 flex items-center justify-center bg-base-100 bg-opacity-70 z-20 text-accent"
         >
-            <XSpinnerIcon/>
+            <slot>
+                <XSpinnerIcon/>
+            </slot>
         </div>
     </transition>
 </template>

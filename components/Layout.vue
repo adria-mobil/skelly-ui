@@ -77,11 +77,13 @@ defineExpose({
                                 </slot>
                             </template>
                             <template #menu="{ close }">
-                                <ul>
-                                    <li>
-                                        <a href="#" @click="close()">Sign out</a>
-                                    </li>
-                                </ul>
+                                <slot name="userMenu" :close="close">
+                                    <ul>
+                                        <li>
+                                            <a href="#" @click="close()">Sign out</a>
+                                        </li>
+                                    </ul>
+                                </slot>
                             </template>
                         </XButtonDropdown>
                     </div>
