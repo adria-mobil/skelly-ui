@@ -4,8 +4,7 @@ import {ref, watch} from "vue";
 
 let props = defineProps({
     modelValue: {required: true},
-    default: {type: Object, required: true},
-    assignMissingProps: {type: Boolean, default: false},
+    default: {type: Object},
     collapsed: {type: Boolean, default: true},
     header: {type: Boolean, default: true},
     simple: {type: Boolean, default: false},
@@ -21,13 +20,15 @@ let props = defineProps({
 let emit = defineEmits(['update:modelValue'])
 
 let items = ref(props.modelValue !== null ? props.modelValue.map(item => {
-    if (props.assignMissingProps) {
-        Object.keys(props.default).forEach((key, value) => {
-            if (item[key] === undefined) {
-                item[key] = props.default[keu]
-            }
-        })
+    if (props.simple) {
+        return item;
     }
+
+    Object.keys(props.default).forEach((key, value) => {
+        if (item[key] === undefined) {
+            item[key] = props.default[key]
+        }
+    })
 
     if (item.uid === undefined) {
         item.uid = nanoid();
@@ -40,7 +41,7 @@ let items = ref(props.modelValue !== null ? props.modelValue.map(item => {
 
 watch(() => items.value, () => {
     emit('update:modelValue', items.value);
-}, { deep: true })
+}, {deep: true})
 
 let toggle = (index) => {
     let i = [...items.value];
@@ -49,6 +50,11 @@ let toggle = (index) => {
 }
 
 let add = () => {
+    if (props.simple) {
+        items.value.push(null)
+        return 0;
+    }
+
     items.value.push({
         ...props.default,
         uid: nanoid(),
@@ -86,7 +92,7 @@ let arrayMove = (array, oldIndex, newIndex) => {
 <template>
     <div class="space-y-4">
         <div class="space-y-4" v-if="items.length">
-            <div v-for="(item, index) in items" :key="item.uid"
+            <div v-for="(item, index) in items" :key="simple ? index : item.uid"
                  class="border list-border rounded-lg divide-y list-divide">
                 <div v-if="header && !simple" class="flex justify-start items-center">
                     <button @click="toggle(index)" class="flex-0 p-2 border-r list-border">
@@ -103,16 +109,16 @@ let arrayMove = (array, oldIndex, newIndex) => {
                         #{{ index + 1 }}
                     </div>
                 </div>
-                <div v-if="item.open" class="flex">
+                <div v-if="(!simple && item.open) || simple" class="flex">
                     <div class="border-r list-border flex flex-col">
-                        <button v-if="index > 0 && !simple" class="p-2" @click="moveUp(index)">
+                        <button v-if="index > 0" class="p-2" @click="moveUp(index)">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/>
                             </svg>
                         </button>
-                        <button v-if="index < items.length - 1 && !simple" class="p-2" @click="moveDown(index)">
+                        <button v-if="index < items.length - 1" class="p-2" @click="moveDown(index)">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -127,7 +133,7 @@ let arrayMove = (array, oldIndex, newIndex) => {
                             </svg>
                         </button>
                     </div>
-                    <div class="p-4">
+                    <div class="w-full p-4">
                         <slot :item="item" :index="index" :extra-data="extraData"/>
                     </div>
                 </div>
@@ -135,12 +141,13 @@ let arrayMove = (array, oldIndex, newIndex) => {
         </div>
         <div class="flex items-center space-x-2">
             <button class="btn btn-sm gap-2" @click="add" v-if="!disableNew">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
                 </svg>
                 {{ addNew }}
             </button>
-            <slot name="buttons" />
+            <slot name="buttons"/>
         </div>
     </div>
 </template>
