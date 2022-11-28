@@ -34,7 +34,7 @@ let isError = computed(() => {
                class="textarea textarea-bordered focus:outline-none"
                :class="[inputClass, { 'textarea-error' : isError }]"
         />
-        <label class="label">
+        <label class="label" v-if="parseErrors.length">
           <span class="label-text text-error">
             {{ parseErrors()[0] }}
           </span>

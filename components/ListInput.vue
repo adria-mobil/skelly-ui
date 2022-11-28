@@ -21,14 +21,16 @@ let emit = defineEmits(['update:modelValue'])
 
 let items = ref(props.modelValue !== null ? props.modelValue.map(item => {
     if (props.simple) {
-        return item;
+        item = { value: item };
     }
 
-    Object.keys(props.default).forEach((key, value) => {
-        if (item[key] === undefined) {
-            item[key] = props.default[key]
-        }
-    })
+    if (!props.simple) {
+        Object.keys(props.default).forEach((key, value) => {
+            if (item[key] === undefined) {
+                item[key] = props.default[key]
+            }
+        })
+    }
 
     if (item.uid === undefined) {
         item.uid = nanoid();
@@ -40,7 +42,16 @@ let items = ref(props.modelValue !== null ? props.modelValue.map(item => {
 }) : []);
 
 watch(() => items.value, () => {
-    emit('update:modelValue', items.value);
+    if (props.simple) {
+        emit('update:modelValue', items.value.map(item => item.value));
+        return 0;
+    }
+
+    emit('update:modelValue', items.value.map(item => {
+        let object = {...item};
+        delete object['open'];
+        return object;
+    }));
 }, {deep: true})
 
 let toggle = (index) => {
@@ -51,7 +62,7 @@ let toggle = (index) => {
 
 let add = () => {
     if (props.simple) {
-        items.value.push(null)
+        items.value.push({ value: null })
         return 0;
     }
 

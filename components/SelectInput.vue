@@ -77,7 +77,7 @@ let resolveLabel = (item) => {
                 {{ resolveLabel(item) }}
             </option>
         </select>
-        <label class="label">
+        <label class="label" v-if="parseErrors.length">
       <span class="label-text text-error">
         {{ parseErrors()[0] }}
       </span>
