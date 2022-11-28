@@ -98,9 +98,7 @@ defineExpose({
                     <slot name="logo"/>
                 </div>
                 <div class="h-4"></div>
-                <ul class="menu menu-compact flex flex-col p-0 px-4">
-                    <slot name="navigation"/>
-                </ul>
+                <slot name="navigation"/>
             </aside>
         </div>
     </div>
