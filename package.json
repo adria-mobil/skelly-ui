@@ -1,13 +1,16 @@
 {
     "sideEffects": false,
     "name": "skelly-ui",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "",
     "main": "index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/adria-mobil/skelly-ui.git"
     },
+    "files": [
+        "daily-ui-preset.js"
+    ],
     "keywords": [],
     "author": "",
     "private": true,
