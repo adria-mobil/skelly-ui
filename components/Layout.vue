@@ -37,7 +37,7 @@ defineExpose({
 <template>
     <div class="drawer drawer-mobile" :class="[drawerBreakpoint]">
         <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" ref="sidebarToggle"/>
-        <div class="drawer-content bg-base-200">
+        <div class="drawer-content bg-base-200" scroll-region>
             <div
                 class="sticky top-0 z-30 flex h-16 w-full justify-center backdrop-blur transition-all duration-100 bg-accent shadow-sm">
                 <div class="navbar w-full">
@@ -55,7 +55,7 @@ defineExpose({
                         </div>
                     </div>
                     <div class="flex-0">
-                        <div class="flex text-accent-content">
+                        <div class="flex">
                             <slot name="headerButtons"/>
                         </div>
                         <XButtonDropdown v-if="userMenu" class="dropdown-end">

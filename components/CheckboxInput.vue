@@ -51,7 +51,7 @@ let updateInput = (event) => {
                 @change="updateInput"
                 :class="inputClass"
             />
-            <span class="label-text">{{ label }}</span>
+            <span class="label-text" v-if="label">{{ label }}</span>
         </label>
     </div>
 </template>

@@ -38,6 +38,10 @@ let isError = computed(() => {
 })
 
 let resolveValue = (item) => {
+    if (item === null) {
+        return "";
+    }
+
     if (typeof props.valueResolver === "function") {
         return props.valueResolver(item)
     }
@@ -72,7 +76,7 @@ let resolveLabel = (item) => {
                 @input="$emit('update:modelValue', $event.target.value)"
                 :disabled="disabled">
             <option v-if="label && labelAsPlaceholder" value="" selected disabled>{{ label }}</option>
-            <option v-if="empty && empty.title" :value="empty.value" v-html="empty.title"/>
+            <option v-if="empty && empty.title" :value="resolveValue(empty.value)" v-html="empty.title"/>
             <option :value="resolveValue(item)" v-for="(item, index) in options" :key="index">
                 {{ resolveLabel(item) }}
             </option>

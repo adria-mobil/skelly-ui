@@ -4,6 +4,10 @@ defineProps({
         type: String,
         default: null
     },
+    bodyClass: {
+        type: String,
+        default: null
+    },
     footerClass: {
         type: String,
         default: "justify-end"
@@ -17,7 +21,7 @@ defineProps({
 </script>
 <template>
     <div class="card bg-base-100 shadow-xl">
-        <div class="card-body space-y-4">
+        <div class="card-body space-y-4" :class="[bodyClass]">
             <h2 class="card-title" :class="[headerClass]" v-if="$slots.header">
                 <slot name="header" />
             </h2>
