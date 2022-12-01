@@ -13,7 +13,7 @@
     ],
     "keywords": [],
     "author": "",
-    "private": true,
+    "private": false,
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/adria-mobil/skelly-ui/issues"
