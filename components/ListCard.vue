@@ -10,7 +10,8 @@ let items = props.data instanceof Object ? Object.values(props.data) : props.dat
 </script>
 <template>
     <XCard
-        body-class="p-0 divide-y divide-base-content divide-opacity-20 space-y-0">
+        gap-class="gap-0"
+        body-class="p-0 divide-y divide-base-content divide-opacity-20 space-y-0 gap-0">
         <template #header v-if="$slots.header">
             <slot name="header"/>
         </template>
@@ -33,8 +34,3 @@ let items = props.data instanceof Object ? Object.values(props.data) : props.dat
         </template>
     </XCard>
 </template>
-<style type="text/css" scoped>
-.card-body {
-    gap: 0;
-}
-</style>
