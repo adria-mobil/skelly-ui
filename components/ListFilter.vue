@@ -37,7 +37,7 @@ let open = ref(props.openOnInit ? activeFilters().length > 0 : false)
     <div v-if="open">
         <slot/>
         <slot name="clear" v-if="activeFilters().length">
-            <button class="btn btn-sm btn-outline" @click="$emit('clear', omitFilters())">
+            <button class="btn btn-xs btn-outline" @click="$emit('clear', omitFilters())">
                 {{ clear }}
             </button>
         </slot>
