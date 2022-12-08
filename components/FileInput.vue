@@ -1,5 +1,5 @@
 <script setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
 
 let props = defineProps({
     inputClass: {type: String, default: ""},
@@ -13,6 +13,7 @@ let props = defineProps({
     }
 })
 
+let fileInput = ref(null)
 let parseErrors = () => {
     if (props.errors instanceof Array) {
         return props.errors;
@@ -23,6 +24,12 @@ let parseErrors = () => {
 let isError = computed(() => {
     return parseErrors().length > 0;
 })
+
+let click = (event) => {
+    fileInput.value.click();
+}
+
+defineExpose({ click })
 </script>
 <template>
     <div class="form-control">
