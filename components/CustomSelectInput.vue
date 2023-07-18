@@ -225,7 +225,7 @@ let resolveSelected = () => {
                 </slot>
             </template>
         </XButtonDropdown>
-        <label class="label">
+        <label class="label" v-if="parseErrors().length">
           <span class="label-text text-error">
             {{ parseErrors()[0] }}
           </span>

@@ -48,7 +48,7 @@ let vUpDown = {
         <label tabindex="0">
             <slot name="button" :open="open" :close="close"/>
         </label>
-        <div tabindex="0" class="dropdown-content menu menu-compact block p-2 shadow bg-base-100 rounded-box"
+        <div tabindex="0" class="dropdown-content menu menu-compact block p-2 shadow bg-base-100 rounded-box z-10"
              :class="[menuClass]">
             <slot name="menu" :open="open" :close="close"/>
         </div>
