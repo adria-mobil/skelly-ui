@@ -1,7 +1,7 @@
 {
     "sideEffects": false,
     "name": "skelly-ui",
-    "version": "1.1.0",
+    "version": "1.0.15",
     "description": "",
     "main": "index.js",
     "repository": {
@@ -10,7 +10,7 @@
     },
     "files": [
         "components/*",
-        "daisy-ui-preset.js"
+        "daily-ui-preset.js"
     ],
     "keywords": [],
     "author": "",

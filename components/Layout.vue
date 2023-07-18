@@ -19,14 +19,14 @@ let closeSidebar = () => {
 
 let drawerBreakpoint = computed(() => {
     if (props.mobileBreakpoint === 'md:hidden') {
-        return "md:drawer-open"
+        return "drawer-md"
     }
 
     if (props.mobileBreakpoint === 'sm:hidden') {
-        return "sm:drawer-open"
+        return "drawer-sm"
     }
 
-    return "lg:drawer-open";
+    return null;
 })
 
 defineExpose({
@@ -93,7 +93,7 @@ defineExpose({
         </div>
         <div class="drawer-side overflow-x-hidden">
             <label for="sidebar-drawer" class="drawer-overlay"></label>
-            <aside class="bg-base-300 w-80 overflow-hidden flex flex-col h-full">
+            <aside class="bg-base-300 w-80 overflow-hidden flex flex-col">
                 <div
                     class="z-20 h-16 flex bg-accent backdrop-blur items-center gap-2 px-4 py-2 hidden shadow-sm"
                     :class="[desktopBreakpoint]">
