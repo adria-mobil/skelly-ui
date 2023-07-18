@@ -22,7 +22,7 @@ let parseErrorGroup = (group) => {
 </script>
 <template>
     <div class="alert alert-error" v-if="errorCount">
-        <div>
+        <div class="flex space-x-2 items-center">
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" ariaHidden="true"
                  class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
