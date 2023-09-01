@@ -93,9 +93,9 @@ let resolveValue = (item) => {
 
 
 let valueIndex = (option) => {
-    if (props.modelValue instanceof Array) {
+    /*if (props.modelValue instanceof Array) {
         return -1;
-    }
+    }*/
 
     return props.modelValue.indexOf(resolveValue(option));
 }
