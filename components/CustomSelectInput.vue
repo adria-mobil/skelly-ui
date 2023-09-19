@@ -173,7 +173,7 @@ let resolveSelected = () => {
         <XButtonDropdown ref="button"
                          :menu-class="'w-full mt-2 border border-base-content border-opacity-20 overflow-y-auto ' + maxHeight">
             <template #button>
-                <button class="select select-bordered w-full flex items-center" v-html="resolveSelected()"></button>
+                <button class="select select-bordered w-full flex items-center" :class="inputClass" v-html="resolveSelected()"></button>
             </template>
             <template #menu="{ close }">
                 <slot name="options" :options="options" :select="select" :isSelected="isSelected">
