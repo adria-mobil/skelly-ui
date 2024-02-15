@@ -162,12 +162,12 @@ let arrayMove = (array, oldIndex, newIndex) => {
         </div>
     </div>
 </template>
-<style type="text/css">
-.list-border {
-    @apply border-base-content border-opacity-20;
-}
+<!--<style type="text/css">-->
+<!--.list-border {-->
+<!--    @apply border-base-content border-opacity-20;-->
+<!--}-->
 
-.list-divide {
-    @apply divide-base-content divide-opacity-20;
-}
-</style>
+<!--.list-divide {-->
+<!--    @apply divide-base-content divide-opacity-20;-->
+<!--}-->
+<!--</style>-->
