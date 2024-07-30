@@ -21,7 +21,7 @@ let props = defineProps({
         default: false,
     },
     options: {
-        type: Array,
+        type: [Array, Object],
         default: () => [],
     }
 })
@@ -37,13 +37,13 @@ let isError = computed(() => {
     return parseErrors().length > 0;
 })
 
-let resolveValue = (item) => {
+let resolveValue = (item, index) => {
     if (item === null) {
         return "";
     }
 
     if (typeof props.valueResolver === "function") {
-        return props.valueResolver(item)
+        return props.valueResolver(item, index)
     }
 
     if (props.valueResolver) {
@@ -53,9 +53,9 @@ let resolveValue = (item) => {
     return item;
 }
 
-let resolveLabel = (item) => {
+let resolveLabel = (item, index) => {
     if (typeof props.labelResolver === "function") {
-        return props.labelResolver(item)
+        return props.labelResolver(item, index)
     }
 
     if (props.labelResolver) {
@@ -77,8 +77,8 @@ let resolveLabel = (item) => {
                 :disabled="disabled">
             <option v-if="label && labelAsPlaceholder" value="" selected disabled>{{ label }}</option>
             <option v-if="empty && empty.title" :value="resolveValue(empty.value)" v-html="empty.title"/>
-            <option :value="resolveValue(item)" v-for="(item, index) in options" :key="index">
-                {{ resolveLabel(item) }}
+            <option :value="resolveValue(item, index)" v-for="(item, index) in options" :key="index">
+                {{ resolveLabel(item, index) }}
             </option>
         </select>
         <label class="label" v-if="isError">
